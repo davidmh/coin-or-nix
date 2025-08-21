@@ -167,7 +167,7 @@
         packages = {
           default = pkgs.symlinkJoin {
             name = "coin-or-nix";
-            paths = [ cbc clp ];
+            paths = [ cbc cgl clp osi pkgs.coin-utils ];
           };
           osi = osi;
           clp = clp;
@@ -176,7 +176,7 @@
         };
 
         devShells.default = pkgs.mkShell {
-          buildInputs = [ cbc clp ];
+          buildInputs = [ cbc cgl clp osi ];
         };
       });
 }
