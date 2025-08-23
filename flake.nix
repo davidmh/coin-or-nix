@@ -11,15 +11,41 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
+        coinutils = pkgs.stdenv.mkDerivation rec {
+          pname = "coinutils";
+          version = "master";
+          name = "${pname}-${version}";
+          src = pkgs.fetchFromGitHub {
+            owner = "coin-or";
+            repo = "CoinUtils";
+            rev = "master";
+            sha256 = "sha256-X03J/qvbP9YVlt+GQrS3rUIQl9ogumxyyBgcC7VV+ME=";
+          };
+          nativeBuildInputs = with pkgs; [
+            updateAutotoolsGnuConfigScriptsHook
+            pkg-config
+          ];
+          configureFlags = [
+            "--enable-shared"
+          ];
+          enableParallelBuilding = true;
+          meta = with pkgs.lib; {
+            description = "COIN-OR Utilities";
+            homepage = "https://github.com/coin-or/CoinUtils";
+            license = licenses.epl20;
+            platforms = platforms.unix;
+          };
+        };
+
         osi = pkgs.stdenv.mkDerivation rec {
           pname = "osi";
-          version = "0.108.11";
-
+          version = "master";
+          name = "${pname}-${version}";
           src = pkgs.fetchFromGitHub {
             owner = "coin-or";
             repo = "Osi";
-            rev = "releases/${version}";
-            sha256 = "sha256-3aTO7JGEOP/RCOZ1X9b68rrtv6T78euf1TYGTjyXSRE=";
+            rev = "master";
+            sha256 = "sha256-X04kvwCO3vvRR6zxAKQuMSPtC0+HxWeKcU2sh7G8VX8=";
           };
 
           nativeBuildInputs = with pkgs; [
@@ -27,9 +53,7 @@
             pkg-config
           ];
 
-          buildInputs = with pkgs; [
-            coin-utils
-          ];
+          buildInputs = [ coinutils ];
 
           configureFlags = [
             "--enable-shared"
@@ -47,13 +71,13 @@
 
         clp = pkgs.stdenv.mkDerivation rec {
           pname = "clp";
-          version = "1.17.10";
-
+          version = "master";
+          name = "${pname}-${version}";
           src = pkgs.fetchFromGitHub {
             owner = "coin-or";
             repo = "Clp";
-            rev = "releases/${version}";
-            sha256 = "sha256-9IlBT6o1aHAaYw2/39XrUis72P9fesmG3B6i/e+v3mM=";
+            rev = "master";
+            sha256 = "sha256-JfV1KltH8VHNgPGqvWQtuD4XdZMUIih/zsuV+R9BNo8=";
           };
 
           nativeBuildInputs = with pkgs; [
@@ -65,7 +89,7 @@
             zlib
             blas
             lapack
-            coin-utils
+            coinutils
             osi
           ];
 
@@ -87,13 +111,13 @@
 
         cgl = pkgs.stdenv.mkDerivation rec {
           pname = "cgl";
-          version = "0.60.9";
-
+          version = "master";
+          name = "${pname}-${version}";
           src = pkgs.fetchFromGitHub {
             owner = "coin-or";
             repo = "Cgl";
-            rev = "releases/${version}";
-            sha256 = "sha256-E84yCrgpRMjt7owPLPk1ATW+aeHNw8V24DHgkb6boIE=";
+            rev = "master";
+            sha256 = "sha256-R07DXqY3hH7NubsO0rYk7YnarEEinBDyQl1fD+A0Dkg=";
           };
 
           nativeBuildInputs = with pkgs; [
@@ -101,11 +125,7 @@
             pkg-config
           ];
 
-          buildInputs = with pkgs; [
-            coin-utils
-            osi
-            clp
-          ];
+          buildInputs = [ coinutils osi clp ];
 
           configureFlags = [
             "--enable-shared"
@@ -123,13 +143,13 @@
 
         cbc = pkgs.stdenv.mkDerivation rec {
           pname = "cbc";
-          version = "2.10.12";
-
+          version = "master";
+          name = "${pname}-${version}";
           src = pkgs.fetchFromGitHub {
             owner = "coin-or";
             repo = "Cbc";
-            rev = "releases/${version}";
-            sha256 = "sha256-0Sz4/7CRKrArIUy/XxGIP7WMmICqDJ0VxZo62thChYQ=";
+            rev = "master";
+            sha256 = "sha256-8Y6I57bUapOx8PBAzRey02/sH0YR98B74GZnmvl5Teg=";
           };
 
           nativeBuildInputs = with pkgs; [
@@ -141,7 +161,7 @@
             zlib
             blas
             lapack
-            coin-utils
+            coinutils
             osi
             cgl
             clp
@@ -167,7 +187,7 @@
         packages = {
           default = pkgs.symlinkJoin {
             name = "coin-or-nix";
-            paths = [ cbc cgl clp osi pkgs.coin-utils ];
+            paths = [ cbc cgl clp osi coinutils ];
           };
           osi = osi;
           clp = clp;
