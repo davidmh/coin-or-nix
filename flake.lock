@@ -1,20 +1,66 @@
 {
   "nodes": {
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems"
-      },
+    "cbc-src": {
+      "flake": false,
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "lastModified": 1755866647,
+        "narHash": "sha256-8Y6I57bUapOx8PBAzRey02/sH0YR98B74GZnmvl5Teg=",
+        "owner": "coin-or",
+        "repo": "Cbc",
+        "rev": "a5f28a33fc4ee170fe51b3706c0400660b3f2f65",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
+        "owner": "coin-or",
+        "repo": "Cbc",
+        "type": "github"
+      }
+    },
+    "cgl-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755860175,
+        "narHash": "sha256-R07DXqY3hH7NubsO0rYk7YnarEEinBDyQl1fD+A0Dkg=",
+        "owner": "coin-or",
+        "repo": "Cgl",
+        "rev": "581c780d8fcda5e02f3c8ef2975bc6804555fa41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coin-or",
+        "repo": "Cgl",
+        "type": "github"
+      }
+    },
+    "clp-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755860090,
+        "narHash": "sha256-JfV1KltH8VHNgPGqvWQtuD4XdZMUIih/zsuV+R9BNo8=",
+        "owner": "coin-or",
+        "repo": "Clp",
+        "rev": "372b733bed3d1cb72db3fe437f454523efe2cc48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coin-or",
+        "repo": "Clp",
+        "type": "github"
+      }
+    },
+    "coinutils-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755094612,
+        "narHash": "sha256-X03J/qvbP9YVlt+GQrS3rUIQl9ogumxyyBgcC7VV+ME=",
+        "owner": "coin-or",
+        "repo": "CoinUtils",
+        "rev": "ffd24f05c068ba84c84eb39de5bb308ed2dc3fb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coin-or",
+        "repo": "CoinUtils",
         "type": "github"
       }
     },
@@ -34,25 +80,30 @@
         "type": "github"
       }
     },
-    "root": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
-      }
-    },
-    "systems": {
+    "osi-src": {
+      "flake": false,
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "lastModified": 1755860593,
+        "narHash": "sha256-X04kvwCO3vvRR6zxAKQuMSPtC0+HxWeKcU2sh7G8VX8=",
+        "owner": "coin-or",
+        "repo": "Osi",
+        "rev": "cb16146c414843076e397370d051a168b7c9215d",
         "type": "github"
       },
       "original": {
-        "owner": "nix-systems",
-        "repo": "default",
+        "owner": "coin-or",
+        "repo": "Osi",
         "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "cbc-src": "cbc-src",
+        "cgl-src": "cgl-src",
+        "clp-src": "clp-src",
+        "coinutils-src": "coinutils-src",
+        "nixpkgs": "nixpkgs",
+        "osi-src": "osi-src"
       }
     }
   },
